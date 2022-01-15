@@ -65,7 +65,7 @@ void FillSimpleNumbers(double[] Array, double number)
 }
 void ShowLine(double[] Array)
 {
-    Console.Write("1 группа: ");
+    Console.Write("2 группа: ");
     for(int i = 0; i<Array.Length; i++)
     {
         Console.Write($"{Array[i]} ");
@@ -88,7 +88,7 @@ void CreatingGroups(double[] Array, double number, int M)
     while(k<M-1)
     {
         Console.Write($"{k+2} группа: ");
-        for(int i = 0; i<Array.Length; i++)
+        for(int i = 0; i<Array.Length && Math.Pow(i,k+1)<number; i++)
         {
             for(int j = i; j<Array.Length && j<number/j; j++)
             {
