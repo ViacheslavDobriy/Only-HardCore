@@ -22,18 +22,18 @@ int GetSizeSimpleNumbers(double number)
 {
     double i = 3;
     int result = 2;
-    while(i<=number)
+    while (i <= number)
     {
         bool check = true;
         double s = 2;
-        for(s=2; i/2 >= s && check == true; s++)
+        for (s = 2; i / 2 >= s && check == true; s++)
         {
-            if(i%s==0)
+            if (i % s == 0)
             {
                 check = false;
             }
         }
-        if(check == true && s!=2) result++;
+        if (check == true && s != 2) result++;
         i++;
     }
     return result;
@@ -42,20 +42,20 @@ void FillSimpleNumbers(double[] Array, double number)
 {
     double i = 3;
     int I = 2;
-    while(i<=number)
+    while (i <= number)
     {
         bool check = true;
         double s = 2;
-        for(s=2; i/2 >= s && check == true; s++)
+        for (s = 2; i / 2 >= s && check == true; s++)
         {
-            if(i%s==0)
+            if (i % s == 0)
             {
                 check = false;
             }
         }
-        if(check == true && s!=2)
+        if (check == true && s != 2)
         {
-            Array[I]= i;
+            Array[I] = i;
             I++;
         }
         i++;
@@ -66,7 +66,7 @@ void FillSimpleNumbers(double[] Array, double number)
 void ShowLine(double[] Array)
 {
     Console.Write("2 группа: ");
-    for(int i = 0; i<Array.Length; i++)
+    for (int i = 0; i < Array.Length; i++)
     {
         Console.Write($"{Array[i]} ");
     }
@@ -75,7 +75,7 @@ void ShowLine(double[] Array)
 int NumberGroups(double number)
 {
     int k = 1;
-    while(Math.Pow(2,k)<=number)
+    while (Math.Pow(2, k) <= number)
     {
         k++;
     }
@@ -85,16 +85,16 @@ int NumberGroups(double number)
 void CreatingGroups(double[] Array, double number, int M)
 {
     int k = 1;
-    while(k<M-1)
+    while (k < M - 1)
     {
-        Console.Write($"{k+2} группа: ");
-        for(int i = 0; i<Array.Length && Math.Pow(i,k+1)<number; i++)
+        Console.Write($"{k + 2} группа: ");
+        for (int i = 0; i < Array.Length && Math.Pow(i, k + 1) < number; i++)
         {
-            for(int j = i; j<Array.Length && j<number/j; j++)
+            for (int j = i; j < Array.Length && j < number / j; j++)
             {
-                if(Math.Pow(Array[i],k)*Array[j]<=number)
+                if (Math.Pow(Array[i], k) * Array[j] <= number)
                 {
-                    Console.Write($"{Math.Pow(Array[i],k)*Array[j]} ");
+                    Console.Write($"{Math.Pow(Array[i], k) * Array[j]} ");
                 }
             }
         }
