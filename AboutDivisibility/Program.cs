@@ -18,10 +18,10 @@ double GetNumber()
     double number = Convert.ToInt32(Console.ReadLine());
     return number;
 }
-double GetSizeSimpleNumbers(double number)
+int GetSizeSimpleNumbers(double number)
 {
     double i = 3;
-    double result = 2;
+    int result = 2;
     while(i<=number)
     {
         bool check = true;
@@ -38,6 +38,52 @@ double GetSizeSimpleNumbers(double number)
     }
     return result;
 }
+void FillSimpleNumbers(double[] Array, double number)
+{
+    double i = 3;
+    int I = 2;
+    while(i<=number)
+    {
+        bool check = true;
+        double s = 2;
+        for(s=2; i/2 >= s && check == true; s++)
+        {
+            if(i%s==0)
+            {
+                check = false;
+            }
+        }
+        if(check == true && s!=2)
+        {
+            Array[I]= i;
+            I++;
+        }
+        i++;
+    }
+    Array[0] = 2;
+    Array[1] = 3;
+}
+void CreateThirdLine(double[] Array, double number)
+{
+    for(int i = 0; i<Array.Length; i++)
+    {
+        for(int j = i; j<Array.Length; j++)
+        {
+            if(Array[i]*Array[j]<=number)
+            {
+                Console.Write($"{Array[i]*Array[j]} ");
+            }
+        }
+    }
+    Console.WriteLine();
+}
 double UserNumber = GetNumber();
-double size = GetSizeSimpleNumbers(UserNumber);
-Console.WriteLine($"Размер массива будет равен {size}");
+int size = GetSizeSimpleNumbers(UserNumber);
+double[] SimplesLine = new double[size];
+FillSimpleNumbers(SimplesLine, UserNumber);
+for(int i = 0; i<SimplesLine.Length; i++)
+{
+    Console.Write($"{SimplesLine[i]} ");
+}
+Console.WriteLine();
+CreateThirdLine(SimplesLine, UserNumber);
