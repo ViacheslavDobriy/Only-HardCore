@@ -63,27 +63,50 @@ void FillSimpleNumbers(double[] Array, double number)
     Array[0] = 2;
     Array[1] = 3;
 }
-void CreateThirdLine(double[] Array, double number)
+void ShowLine(double[] Array)
 {
+    Console.Write("1 группа: ");
     for(int i = 0; i<Array.Length; i++)
     {
-        for(int j = i; j<Array.Length; j++)
-        {
-            if(Array[i]*Array[j]<=number)
-            {
-                Console.Write($"{Array[i]*Array[j]} ");
-            }
-        }
+        Console.Write($"{Array[i]} ");
     }
     Console.WriteLine();
 }
+int NumberGroups(double number)
+{
+    int k = 1;
+    while(Math.Pow(2,k)<=number)
+    {
+        k++;
+    }
+    Console.WriteLine($"Количество групп - {k}");
+    return k;
+}
+void CreatingGroups(double[] Array, double number, int M)
+{
+    int k = 1;
+    while(k<M-1)
+    {
+        Console.Write($"{k+2} группа: ");
+        for(int i = 0; i<Array.Length; i++)
+        {
+            for(int j = i; j<Array.Length; j++)
+            {
+                if(Math.Pow(Array[i],k)*Array[j]<=number)
+                {
+                    Console.Write($"{Math.Pow(Array[i],k)*Array[j]} ");
+                }
+            }
+        }
+        Console.WriteLine();
+        k++;
+    }
+}
 double UserNumber = GetNumber();
+int numberGroups = NumberGroups(UserNumber);
 int size = GetSizeSimpleNumbers(UserNumber);
 double[] SimplesLine = new double[size];
 FillSimpleNumbers(SimplesLine, UserNumber);
-for(int i = 0; i<SimplesLine.Length; i++)
-{
-    Console.Write($"{SimplesLine[i]} ");
-}
-Console.WriteLine();
-CreateThirdLine(SimplesLine, UserNumber);
+Console.WriteLine("1 группа: 1");
+ShowLine(SimplesLine);
+CreatingGroups(SimplesLine, UserNumber, numberGroups);
