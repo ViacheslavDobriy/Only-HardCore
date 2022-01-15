@@ -90,7 +90,7 @@ void CreatingGroups(double[] Array, double number, int M)
         Console.Write($"{k+2} группа: ");
         for(int i = 0; i<Array.Length; i++)
         {
-            for(int j = i; j<Array.Length; j++)
+            for(int j = i; j<Array.Length && j<number/j; j++)
             {
                 if(Math.Pow(Array[i],k)*Array[j]<=number)
                 {
