@@ -11,21 +11,22 @@
 Группа 5: 7 16 24 36 40 
 Группа 6: 5 32 48
 Задача: найти M при заданном N и получить одно из разбиений на группы N ≤ 10²⁰*/
+using System.Text;
 
-double GetNumber()
+long GetNumber()
 {
     Console.WriteLine("Введите число N: ");
-    double number = Convert.ToInt32(Console.ReadLine());
+    long number = Convert.ToInt32(Console.ReadLine());
     return number;
 }
-int GetSizeSimpleNumbers(double number)
+int GetSizeSimpleNumbers(long number)
 {
-    double i = 3;
+    long i = 3;
     int result = 2;
     while (i <= number)
     {
         bool check = true;
-        double s = 2;
+        long s = 2;
         for (s = 2; i / 2 >= s && check == true; s++)
         {
             if (i % s == 0)
@@ -38,14 +39,14 @@ int GetSizeSimpleNumbers(double number)
     }
     return result;
 }
-void FillSimpleNumbers(double[] Array, double number)
+void FillSimpleNumbers(long[] Array, long number)
 {
-    double i = 3;
+    long i = 3;
     int I = 2;
     while (i <= number)
     {
         bool check = true;
-        double s = 2;
+        long s = 2;
         for (s = 2; i / 2 >= s && check == true; s++)
         {
             if (i % s == 0)
@@ -63,16 +64,17 @@ void FillSimpleNumbers(double[] Array, double number)
     Array[0] = 2;
     Array[1] = 3;
 }
-void ShowLine(double[] Array)
+void ShowLine(long[] Array)
 {
-    Console.Write("2 группа: ");
+    StringBuilder str = new StringBuilder();
+    str.Append("2 группа: ");
     for (int i = 0; i < Array.Length; i++)
     {
-        Console.Write($"{Array[i]} ");
+        str.Append($"{Array[i]} ");
     }
-    Console.WriteLine();
+    Console.WriteLine(str.ToString());
 }
-int NumberGroups(double number)
+int NumberGroups(long number)
 {
     int k = 1;
     while (Math.Pow(2, k) <= number)
@@ -82,30 +84,32 @@ int NumberGroups(double number)
     Console.WriteLine($"Количество групп - {k}");
     return k;
 }
-void CreatingGroups(double[] Array, double number, int M)
+void CreatingGroups(long[] Array, long number, int M)
 {
     int k = 1;
     while (k < M - 1)
     {
-        Console.Write($"{k + 2} группа: ");
+        StringBuilder str = new StringBuilder();
+        str.Append($"{k + 2} группа: ");
         for (int i = 0; i < Array.Length && Math.Pow(i, k + 1) < number; i++)
         {
             for (int j = i; j < Array.Length && j < number / j; j++)
             {
-                if (Math.Pow(Array[i], k) * Array[j] <= number)
+                long current = (long)Math.Pow(Array[i]+0.0, k) * Array[j];
+                if (current <= number)
                 {
-                    Console.Write($"{Math.Pow(Array[i], k) * Array[j]} ");
+                    str.Append($"{current} ");
                 }
             }
         }
-        Console.WriteLine();
+        //Console.WriteLine(str.ToString());
         k++;
     }
 }
-double UserNumber = GetNumber();
+long UserNumber = GetNumber();
 int numberGroups = NumberGroups(UserNumber);
 int size = GetSizeSimpleNumbers(UserNumber);
-double[] SimplesLine = new double[size];
+long[] SimplesLine = new long[size];
 FillSimpleNumbers(SimplesLine, UserNumber);
 Console.WriteLine("1 группа: 1");
 ShowLine(SimplesLine);
