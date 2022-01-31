@@ -39,10 +39,11 @@ int GetSizeSimpleNumbers(long number)
     }
     return result;
 }
-void FillSimpleNumbers(long[] Array, long number)
+void FillSimpleNumbers(List<long> listSimpleNumbers, long number)
 {
+    listSimpleNumbers.Add(2);
+    listSimpleNumbers.Add(3);
     long i = 3;
-    int I = 2;
     while (i <= number)
     {
         bool check = true;
@@ -56,13 +57,10 @@ void FillSimpleNumbers(long[] Array, long number)
         }
         if (check == true && s != 2)
         {
-            Array[I] = i;
-            I++;
+            listSimpleNumbers.Add(i);
         }
         i++;
     }
-    Array[0] = 2;
-    Array[1] = 3;
 }
 void ShowLine(long[] Array)
 {
@@ -108,9 +106,9 @@ void CreatingGroups(long[] Array, long number, int M)
 }
 long UserNumber = GetNumber();
 int numberGroups = NumberGroups(UserNumber);
-int size = GetSizeSimpleNumbers(UserNumber);
-long[] SimplesLine = new long[size];
-FillSimpleNumbers(SimplesLine, UserNumber);
+//int size = GetSizeSimpleNumbers(UserNumber);
+List<long> ListSimpleNumbers = new List<long>();
+FillSimpleNumbers(ListSimpleNumbers,UserNumber);
 Console.WriteLine("1 группа: 1");
-ShowLine(SimplesLine);
-CreatingGroups(SimplesLine, UserNumber, numberGroups);
+ShowLine(ListSimpleNumbers.ToArray());
+CreatingGroups(ListSimpleNumbers.ToArray(), UserNumber, numberGroups);
